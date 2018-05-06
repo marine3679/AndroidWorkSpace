@@ -12,4 +12,13 @@
         android:text="@string/make_new_project"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/exist_project"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/make_exist_project"
+        android:textStyle="bold" />
+
 </LinearLayout>

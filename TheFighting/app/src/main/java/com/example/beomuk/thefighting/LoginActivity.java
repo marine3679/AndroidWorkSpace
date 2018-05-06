@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -73,6 +75,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private TextView mTextConfirm;
     private CallbackManager callbackManager;
 
+    private AccessToken accessToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +116,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        //2018.05.06 Facebook Login
                         mTextConfirm.setText("LoginSuccess\n" + loginResult.getAccessToken());
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("accessToken",loginResult.getAccessToken());
                         startActivity(intent);
                     }
 
@@ -127,6 +133,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         mTextConfirm.setText("Login Error" + error.getMessage());
                     }
                 });
+
+        accessToken = AccessToken.getCurrentAccessToken();
+//        Log.d("accessToken", accessToken.getS);
+        if(accessToken != null) {
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            intent.putExtra("accessToken",accessToken);
+            startActivity(intent);
+        }
     }
 
     @Override

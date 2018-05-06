@@ -16,5 +16,8 @@
     <string name="facebook_app_id">2067841490131162</string>
     <string name="fb_login_protocol_scheme">fb2067841490131162</string>
 
+    <string name="login">Login</string>
+    <string name="main_list">Main List</string>
     <string name="make_new_project">New Project</string>
+    <string name="make_exist_project">Exist Project</string>
 </resources>
